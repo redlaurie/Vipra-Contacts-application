@@ -5,9 +5,12 @@
         {% for contact in contacts %}
             <div class="col-lg-4">
                 <div class="box-element product">
-                    <h6><strong>{{contact.name}}</strong></h6>
                     <hr>
+                    <h2 class="article-title"> {{ contact.name }}</h2>
+                    <p class="article-content">{{ contact.email }}</p>
+                    <p class="article-content">{{ contact.Number }}</p>
                     <a class="btn btn-outline-success" href="{% url 'contact-details' contact.id %}">view</a>
+                    <hr>
                 </div>
             </div>
         {% endfor %}
