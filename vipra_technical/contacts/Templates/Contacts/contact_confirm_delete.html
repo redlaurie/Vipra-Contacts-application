@@ -1,0 +1,12 @@
+{% extends "contacts/base.html" %}
+{% block content %}
+    <div class="">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <h2>Do you want to delete this contact?</h2>
+                <button class="btn btn-outline-danger" type="submit">Yes</button>
+            </fieldset>
+        </form>
+    </div>
+{% endblock content %}

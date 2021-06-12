@@ -10,6 +10,7 @@
             <h2 class="article-title"> {{ contact.name }}</h2>
             <p class="article-content">{{ contact.email }}</p>
             <p class="article-content">{{ contact.Number }}</p>
+            <a class="nav-item nav-link" href="{% url 'contact-delete' contact.id %}">Delete</a>
           </div>
         </article>
 {% endblock content %}

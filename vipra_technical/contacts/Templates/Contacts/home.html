@@ -10,6 +10,7 @@
                     <p class="article-content">{{ contact.email }}</p>
                     <p class="article-content">{{ contact.Number }}</p>
                     <a class="btn btn-outline-success" href="{% url 'contact-details' contact.id %}">view</a>
+                    <a class="btn btn-outline-success" href="{% url 'contact-update' contact.id %}">Update</a>
                     <hr>
                 </div>
             </div>
