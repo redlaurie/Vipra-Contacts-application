@@ -1,0 +1,14 @@
+{% extends "contacts/base.html" %}
+
+{% block content %}
+        <article class="media content-section">
+
+          <div class="media-body">
+            <div class="article-metadata">
+              <small class="text-muted">{{ contact.date_posted }}</small>
+            </div>
+            <h2 class="article-title"> {{ contact.name }}</h2>
+            <p class="article-content">{{ contact.email }}</p>
+          </div>
+        </article>
+{% endblock content %}
