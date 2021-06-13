@@ -28,16 +28,30 @@ def ContacsList(request):
 
 @api_view(['GET'])
 def ContacsDetail(request,pk):
-    contacts = Contact.objects.get(id=pk)
+    contacts = Contact.objects.get(id = pk)
     serializer = ContactSerializer(contacts, many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
 def ContacsCreate(request):
-    serializer = ContactSerializer(data=request.data)
+    serializer = ContactSerializer(data = request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
+
+@api_view(['POST'])
+def ContacsUpdate(request, pk):
+    contacts = Contact.objects.get(id = pk)
+    serializer = ContactSerializer(instance = contacts ,data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def ContacsDetail(request,pk):
+    contacts = Contact.objects.get(id = pk)
+    contacts.delete()
+    return Response("Contact Deleted")
 # Create your views here.
 
 def register(request):
