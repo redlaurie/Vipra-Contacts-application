@@ -1,50 +1,53 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import Contact
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,redirect,get_object_or_404
 from django.views.generic import CreateView,UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
+from .forms import UserRegisterForm
+from django.contrib import messages
+from django.http import JsonResponse
 # Create your views here.
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import ContactSerializer
 
+@api_view(['GET'])
 def home(request):
-    context = {'contacts': Contact.objects.all(),'title': 'Home'}
-    return render(request, 'contacts/home.html', context)
+    api_urls = {
+        'List':'/Contacts-list/',
+
+    }
+    return Response(api_urls)
+
+@api_view(['GET'])
+def ContacsList(request):
+    contacts = Contact.objects.all()
+    serializer = ContactSerializer(contacts, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def ContacsDetail(request,pk):
+    contacts = Contact.objects.get(id=pk)
+    serializer = ContactSerializer(contacts, many=False)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def ContacsCreate(request):
+    serializer = ContactSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
 # Create your views here.
-def DetailView(request,pk):
-    contact = get_object_or_404(Contact,id=pk)
-    context = {'contact':contact, 'title': contact}
-    print(context)
-    return render(request,'contacts/details.html',context)
 
-class ContactCreateView(CreateView):
-    model = Contact
-    fields = ['name','email','Number']
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-class ContactUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Contact
-    fields = ['name','email','Number']
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        contact = self.get_object()
-        if self.request.user == contact.author:
-            return True
-        else:
-            return False
-
-class ContactDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Contact
-    success_url = '/'
-
-    def test_func(self):
-        contact = self.get_object()
-        if self.request.user == contact.author:
-            return True
-        return False
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}')
+            return redirect('login')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'users/register.html',{'form': form})
