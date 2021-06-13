@@ -35,7 +35,9 @@ def ContacsDetail(request,pk):
 @api_view(['POST'])
 def ContacsCreate(request):
     serializer = ContactSerializer(data = request.data)
+    print(serializer)
     if serializer.is_valid():
+        print("saved!")
         serializer.save()
     return Response(serializer.data)
 
@@ -48,7 +50,7 @@ def ContacsUpdate(request, pk):
     return Response(serializer.data)
 
 @api_view(['DELETE'])
-def ContacsDetail(request,pk):
+def ContacsDelete(request,pk):
     contacts = Contact.objects.get(id = pk)
     contacts.delete()
     return Response("Contact Deleted")
