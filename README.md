@@ -5,6 +5,12 @@ Vipra technical test: A contacts application to create, View and edit contacts.
 
 After cloning the project you need to do a command to start the project. To start the project you need to either use a virtual environemtn such as pycharm or Visual studio or use the terminal in order to CD to vipra_technical. 
 
+##setting up frontend
+
+The frontend of the project is done in React.JS and so therefore requires different setup to run. This is done by using the CD command to CD into the folder called frontend. 
+
+Once you are in that file type npm install and it will download all the dependancies required to run the frontend.
+
 ### Runserver
 
 To run the server after performing the above command you need to type python manage.py runserver. This will then run the server on your computer on your localhost:8000 and can then be accessed. 
