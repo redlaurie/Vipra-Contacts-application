@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/VipraTechnicalTest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vipra_technical/frontend" vcs="Git" />
   </component>
 </project>
