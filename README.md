@@ -44,3 +44,6 @@ To Delete a contact you need to navigate to the details page of the contact. Und
 
 From this project you can access both the frontend and backend. To access the backend you need to go the the url /contacts/contacts-list/ here you will see a list of the API commands and URL's displayed using the Django rest framework. 
 
+# Testing 
+
+The backend of this project has multiple tests for the api. To run these tests you need to CD to vira_technical and type python manage.py test and it will run all the tests and there logs. 
