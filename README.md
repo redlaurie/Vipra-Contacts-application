@@ -47,3 +47,8 @@ From this project you can access both the frontend and backend. To access the ba
 # Testing 
 
 The backend of this project has multiple tests for the api. To run these tests you need to CD to vira_technical and type python manage.py test and it will run all the tests and there logs. 
+
+# What I would of liked to add
+
+If I had more time I would of liked to try the solution for running both the frontend and backend that Davide suggested using Docker
+aswell as the nginx system however after trying to understand it I realised I wouldn't have enough time. I also would of liked to add better visuals to the frontend aswell such as making the input boxes only visable after a button click, Adding a better header to the document, Giving the contact boxes improved visuals such as popping out on hover and smooth edges. 
