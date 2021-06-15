@@ -15,7 +15,10 @@ from .serializers import ContactSerializer
 @api_view(['GET'])
 def home(request):
     api_urls = {
-        'List':'/Contacts-list/',
+        'List':'/contacts-list/',
+        'Add':'/contacts-create/',
+        'update':'/contacts-update/<str:pk>/',
+        'delete':'/contacts-delete/<str:pk>/'
 
     }
     return Response(api_urls)
@@ -24,12 +27,6 @@ def home(request):
 def ContacsList(request):
     contacts = Contact.objects.all()
     serializer = ContactSerializer(contacts, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def ContacsDetail(request,pk):
-    contacts = Contact.objects.get(id = pk)
-    serializer = ContactSerializer(contacts, many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
