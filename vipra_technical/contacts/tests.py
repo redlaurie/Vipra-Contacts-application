@@ -15,11 +15,22 @@ class CreateContactTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         print(response)
 
+    def test_create_partial(self):
+        data = {"name": "FakeName", "email": "test@testemail.com"}
+        response = self.client.post("http://127.0.0.1:8000/contacts/contacts-create/", data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
 class DeleteContactTest(APITestCase):
     #Test to see if you can delete an entry that does not exist.
     def test_delete(self):
         response = self.client.post("http://127.0.0.1:8000/contacts/contacts-delete/")
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+class UpdateContactTest(APITestCase):
+    #Test to see if you can update an entry that does not exist as entry 1 no longer exists.
+    def test_delete(self):
+        response = self.client.post("http://127.0.0.1:8000/contacts/contacts-delete/1")
+        self.assertEqual(response.status_code, status.HTTP_301_MOVED_PERMANENTLY)
 
 class ListContactsTest(APITestCase):
 
