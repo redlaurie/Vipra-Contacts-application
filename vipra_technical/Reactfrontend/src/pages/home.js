@@ -3,7 +3,7 @@ import React from 'react';
 class Home extends React.Component {
   constructor(props){
     super(props);
-      this.state = {Contacts:[],activeItem:{id:null,name:'',email:'',Number:''},update:false,}
+      this.state = {Contacts:[],activeItem:{id:null,name:'',email:'',number:''},update:false,}
       this.getContacts = this.getContacts.bind(this)
       this.NameChange = this.NameChange.bind(this)
       this.EmailChange = this.EmailChange.bind(this)
@@ -74,7 +74,7 @@ class Home extends React.Component {
     this.setState({
       activeItem:{
         ...this.state.activeItem,
-        Number:value,
+        number:value,
 
       }
     })
@@ -151,7 +151,7 @@ class Home extends React.Component {
                     <div className="flex-wrapper">
                             <input onChange={this.NameChange} className="form-control" id="title" value={this.state.activeItem.name} type="text" name="title" placeholder="Contacts Name" />
                             <input onChange={this.EmailChange} className="form-control" id="title" value={this.state.activeItem.email} type="text" name="title" placeholder="Contacts Email" />
-                            <input onChange={this.NumberChange} className="form-control" id="title" value={this.state.activeItem.Number} type="text" name="title" placeholder="Contacts Number" />
+                            <input onChange={this.NumberChange} className="form-control" id="title" value={this.state.activeItem.number} type="text" name="title" placeholder="Contacts Number" />
                             <input id="submit" type="submit" name="Add" />
 
                       </div>
@@ -166,7 +166,7 @@ class Home extends React.Component {
                                 <div>
                                         <h1>{contact.name}</h1>
                                         <p>{contact.email}</p>
-                                        <p>{contact.Number}</p>
+                                        <p>{contact.number}</p>
 
                                         <button onClick={() => self.Updating(contact)}>Edit</button>
 

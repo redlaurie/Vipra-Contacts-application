@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.http import Http404
 from .models import Contact
 from django.shortcuts import render,redirect,get_object_or_404
 from django.views.generic import CreateView,UpdateView, DeleteView
@@ -9,8 +10,14 @@ from django.contrib import messages
 from django.http import JsonResponse
 # Create your views here.
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+
 from rest_framework.response import Response
 from .serializers import ContactSerializer
+
+class ContactList(APIView):
+    print("hello")
+
 
 @api_view(['GET'])
 def home(request):
@@ -36,7 +43,9 @@ def ContacsCreate(request):
     if serializer.is_valid():
         print("saved!")
         serializer.save()
-    return Response(serializer.data)
+        return Response(serializer.data)
+    else:
+        raise Http404
 
 @api_view(['POST'])
 def ContacsUpdate(request, pk):
@@ -44,7 +53,10 @@ def ContacsUpdate(request, pk):
     serializer = ContactSerializer(instance = contacts ,data = request.data)
     if serializer.is_valid():
         serializer.save()
-    return Response(serializer.data)
+        return Response(serializer.data)
+    else:
+        raise Http404
+
 
 @api_view(['DELETE'])
 def ContacsDelete(request,pk):
