@@ -18,9 +18,9 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from django.views.generic import TemplateView
 from contacts import views as contacts_views
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('contacts/', include('contacts.urls')),
-    path('', TemplateView.as_view(template_name='index.html')),
 
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("contacts/", include("contacts.urls")),
+    path("", TemplateView.as_view(template_name="index.html")),
 ]

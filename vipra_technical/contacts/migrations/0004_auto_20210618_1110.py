@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('contacts', '0003_remove_contact_author'),
+        ("contacts", "0003_remove_contact_author"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='contact',
-            name='Number',
+            model_name="contact",
+            name="Number",
             field=models.IntegerField(blank=True, max_length=11),
         ),
         migrations.AlterField(
-            model_name='contact',
-            name='email',
+            model_name="contact",
+            name="email",
             field=models.EmailField(blank=True, max_length=254),
         ),
     ]
