@@ -35,7 +35,7 @@ class Home extends React.Component {
   }
 
   getContacts(){
-    fetch('http://127.0.0.1:8000/contacts/contacts-list/')
+    fetch('http://127.0.0.1:8000/contacts/API/')
     .then(response => response.json())
     .then(data => 
       this.setState({
@@ -87,17 +87,18 @@ class Home extends React.Component {
 
     var csrftoken = this.getCookie('csrftoken')
 
-    var url = 'http://127.0.0.1:8000/contacts/contacts-create/'
-
+    var url = 'http://127.0.0.1:8000/contacts/API/'
+    var requestType = 'POST'
     if(this.state.update == true){
-      url = `http://127.0.0.1:8000/contacts/contacts-update/${ this.state.activeItem.id}/`
+      url = `http://127.0.0.1:8000/contacts/API/${ this.state.activeItem.id}/`
+      requestType = 'PUT'
       this.setState({
         editing:false
       })
     }
 
     fetch(url, {
-      method:'POST',
+      method:requestType,
       headers:{
         'Content-type':'application/json',
         'X-CSRFToken':csrftoken,
@@ -126,7 +127,7 @@ class Home extends React.Component {
 
   deleteItem(contact){
     var csrftoken = this.getCookie('csrftoken')
-    fetch(`http://127.0.0.1:8000/contacts/contacts-delete/${contact.id}/`, {
+    fetch(`http://127.0.0.1:8000/contacts/API/${contact.id}/`, {
       method:'DELETE',
       headers:{
         'Content-type':'application/json',
